@@ -16,7 +16,7 @@ function Profile() {
     }));
     useEffect(() => {
         store.modals.name && store.modals.close();
-        !select.item && store.itemProfile.itemPage(id);
+        (!select.item || select.item._id !== id) && store.itemProfile.itemPage(id);
 
     });
 
@@ -34,7 +34,6 @@ function Profile() {
     return (
         <Layout head={<h1>{select.item && select.item.name}</h1>}>
             <BasketSimple onOpen={callbacks.openModal} amount={select.amount} sum={select.sum}/>
-            {console.log(store)}
             {select.item && <ItemPage item={select.item} onAdd={callbacks.addToBasket} />}
 
 
