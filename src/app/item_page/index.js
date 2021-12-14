@@ -4,28 +4,39 @@ import BasketSimple from "../../components/basket-simple";
 import useStore from "../../utils/use-store";
 import useSelector from "../../utils/use-selector";
 import ItemPage from "../../components/itemPage";
+import {useParams} from 'react-router-dom';
 
 function Profile() {
-
+    const store = useStore();
+    const {id} = useParams();
     const select = useSelector(state => ({
         item: state.itemProfile.item,
         amount: state.basket.amount,
         sum: state.basket.sum
     }));
-    const madeIn = select.item.madeIn
+    useEffect(() => {
+        store.modals.name && store.modals.close();
+        !select.item && store.itemProfile.itemPage(id);
 
-    const store = useStore();
+    });
+
+
+
+
 
     const callbacks = {
+        openModal: useCallback(() => store.modals.open('basket'), [store]),
         addToBasket: useCallback((_id) => store.basket.add(_id), [store])
     }
-    console.log('item', select.item)
+
 
 
     return (
-        <Layout head={<h1>{select.item.name}</h1>}>
+        <Layout head={<h1>{select.item && select.item.name}</h1>}>
             <BasketSimple onOpen={callbacks.openModal} amount={select.amount} sum={select.sum}/>
-            <ItemPage item={select.item} onAdd={callbacks.addToBasket} />
+            {console.log(store)}
+            {select.item && <ItemPage item={select.item} onAdd={callbacks.addToBasket} />}
+
 
         </Layout>
     );

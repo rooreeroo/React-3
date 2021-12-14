@@ -8,7 +8,7 @@ class CatalogStore extends StoreModule {
      */
     initState() {
         return {
-            item: {}
+            item: null
         }
     }
 
@@ -26,6 +26,11 @@ class CatalogStore extends StoreModule {
         });
 
     };
+    clear = () => {
+        this.setState({
+            item: null
+        })
+    }
 
 
 }

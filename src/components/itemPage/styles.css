@@ -1,0 +1,28 @@
+.ItemPage {
+    margin: 20px 40px 0 40px;
+    font-size: 18px;
+    line-height: 21px;
+}
+.description {
+    padding-bottom: 20px;
+}
+.maidIn {
+    padding-bottom: 20px;
+}
+.maidIn span{
+    font-weight: bold;
+}
+.category {
+    padding-bottom: 20px;
+}
+.category span{
+    font-weight: bold;
+}
+.ItemPage__price {
+    padding-bottom: 23px;
+    font-size: 24px;
+    line-height: 28px;
+}
+.ItemPage__price span{
+    font-weight: bold;
+}
