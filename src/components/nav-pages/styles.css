@@ -1,0 +1,27 @@
+.nav_pages {
+    margin-top: 20px;
+}
+.nav_pages ul {
+    justify-content: flex-end;
+    display: flex;
+    margin-right: 24px;
+}
+
+.nav_pages ul li {
+    list-style: none;
+}
+.nav_pages ul li a {
+    cursor: pointer;
+    margin-right: 5px;
+}
+.nav_pages ul li a:hover {
+    background-color: #E1E1E1;
+}
+.active {
+    color: white;
+    background-color: #000;
+}
+.active:hover {
+    cursor: default;
+
+}
