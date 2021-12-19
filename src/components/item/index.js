@@ -4,7 +4,7 @@ import './styles.css';
 import numberFormat from "../../utils/number-format";
 import {Link} from "react-router-dom";
 
-function Item({itemPage, item, onAdd}) {
+function Item({item, onAdd}) {
   return (
     <div className='Item'>
       <div className='Item__number'>{item._key}</div>
