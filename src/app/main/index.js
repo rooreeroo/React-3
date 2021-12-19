@@ -12,6 +12,8 @@ function Main() {
   const select = useSelector(state => ({
     items: state.catalog.items,
     pages: state.catalog.pages,
+    page: state.catalog.page,
+    limit: state.catalog.limit,
     amount: state.basket.amount,
     sum: state.basket.sum
   }));
@@ -19,7 +21,7 @@ function Main() {
 
   // Загрузка тестовых данных при первом рендере
   useEffect(async () => {
-    await store.catalog.load();
+    await store.catalog.load(0, 10);
   }, []);
 
   const store = useStore();
@@ -27,7 +29,8 @@ function Main() {
   const callbacks = {
     addToBasket: useCallback((_id) => store.basket.add(_id), [store]),
     openModal: useCallback(() => store.modals.open('basket'), [store]),
-    getId: useCallback((id) => store.profile.itemPage(id), [store])
+    getId: useCallback((id) => store.profile.itemPage(id), [store]),
+    changePage: useCallback((num, limit) => store.catalog.load(num, limit), [store])
   }
 
   const renders = {
@@ -41,7 +44,7 @@ function Main() {
       <BasketSimple onOpen={callbacks.openModal} amount={select.amount} sum={select.sum}/>
 
       <List  items={select.items} renderItem={renders.item} />
-      <Pages store={store.catalog} pages={select.pages}/>
+      <Pages changePage={callbacks.changePage} pages={select.pages} page={select.page} limit={select.limit}/>
 
     </Layout>
   );
